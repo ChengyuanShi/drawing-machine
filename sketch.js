@@ -14,7 +14,7 @@ function setup() {
 function draw() {
 
 
-      background(150,200,250,5);
+      background(150,200,250,4);
 
       strokeWeight(strokeWidth);
       noiseOffset += 0.1;
