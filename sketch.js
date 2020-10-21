@@ -14,7 +14,7 @@ function setup() {
 function draw() {
 
 
-      background(150,200,250,4);
+      background(150,200,250,5);
 
       strokeWeight(strokeWidth);
       noiseOffset += 0.1;
@@ -56,9 +56,9 @@ function keyTyped(){
   return false;
 }
 }
-
-function mousePressed() {
-  array = [];
-
-
-}
+//
+// function mousePressed() {
+//   array = [];
+//
+//
+// }
