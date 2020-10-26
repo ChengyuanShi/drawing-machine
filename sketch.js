@@ -1,29 +1,43 @@
 let array = [];
-// let backgroundColor = 250;
+let backgroundColor = 250;
 let noiseOffset = 0.0;
 let strokeWidth = 5;
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  // createCanvas(windowWidth, windowHeight);
+  createCanvas(1000, 300);    // background(150,200,250);
+ pixelDensity(1);
+  drawGrid();
 
-    background(150,200,250);
-
-
-  // noFill();
+  noFill();
 }
 
 function draw() {
 
 
-      background(150,200,250,5);
+      background(150,100,280,2);
 
+loadPixels();
+for(var y = 0; y < height; y++){
+  for(var x = 0; x < width; x++){
+    var index = (x + y * width) *10;
+    pixels[index*0] = x;
+    pixels[index*1] = random(255);
+    pixels[index*2] = y;
+    pixels[index*3] = 255;
+  }
+}
+updatePixels();
+
+if (mouseIsPressed) {
       strokeWeight(strokeWidth);
       noiseOffset += 0.1;
-      strokeWidth = noise(noiseOffset) * 50;
+      strokeWidth = noise(noiseOffset) * 18;
 
-      stroke(map(mouseX,0,0,0,250,true));
+      stroke(map(mouseX,0,600,0,250,true));
       // line(width - mouseX, height - mouseY, width - pmouseX, height - pmouseY);
       line(mouseX, mouseY, pmouseX, pmouseY);
-
+       stepSize = textWidth();
+}
 
   //     array.push([mouseX, mouseY]);
   //
@@ -57,8 +71,25 @@ function keyTyped(){
 }
 }
 //
-// function mousePressed() {
-//   array = [];
-//
-//
-// }
+function mousePressed() {
+  array = [];
+ backgroundColor = 255;
+
+}
+function drawGrid(){
+  numCells = 2;
+  fillColor = 0;
+strokeWeight(0);
+  for (let i = 0; i <= width; i += width/numCells){
+  for (let j = 0; j <= height; j += height/numCells){
+    if(fillColor === 255){
+      fillColor = 100;
+    } else{
+      fillColor = 255;
+    }
+    fill(fillColor);
+    rect(i, j, width/numCells, height/numCells);
+  }
+  }
+strokeWeight(5);
+}
