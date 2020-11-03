@@ -5,23 +5,24 @@ let strokeWidth = 5;
 function setup() {
   // createCanvas(windowWidth, windowHeight);
   createCanvas(1000, 300);    // background(150,200,250);
- pixelDensity(1);
-  drawGrid();
+ pixelDensity(2);
+  // drawGrid();
 
   noFill();
+  noStroke();
 }
 
 function draw() {
 
 
-      background(150,100,280,2);
+      background(150,100,200,2);
 
 loadPixels();
 for(var y = 0; y < height; y++){
   for(var x = 0; x < width; x++){
-    var index = (x + y * width) *10;
+    var index = (x + y * width) *20;
     pixels[index*0] = x;
-    pixels[index*1] = random(255);
+    pixels[index*1] = 100;
     pixels[index*2] = y;
     pixels[index*3] = 255;
   }
@@ -30,12 +31,16 @@ updatePixels();
 
 if (mouseIsPressed) {
       strokeWeight(strokeWidth);
-      noiseOffset += 0.1;
-      strokeWidth = noise(noiseOffset) * 18;
 
-      stroke(map(mouseX,0,600,0,250,true));
+      noiseOffset += 0.1;
+      strokeWidth = noise(noiseOffset) * 15
+      ;
+      // var d = dist(x, y, mouseX, mouseY);
+
+      stroke(map(mouseX,0,150,0,250,true));
       // line(width - mouseX, height - mouseY, width - pmouseX, height - pmouseY);
-      line(mouseX, mouseY, pmouseX, pmouseY);
+      line(mouseX , mouseY, pmouseX, pmouseY);
+
        stepSize = textWidth();
 }
 
@@ -76,20 +81,20 @@ function mousePressed() {
  backgroundColor = 255;
 
 }
-function drawGrid(){
-  numCells = 2;
-  fillColor = 0;
-strokeWeight(0);
-  for (let i = 0; i <= width; i += width/numCells){
-  for (let j = 0; j <= height; j += height/numCells){
-    if(fillColor === 255){
-      fillColor = 100;
-    } else{
-      fillColor = 255;
-    }
-    fill(fillColor);
-    rect(i, j, width/numCells, height/numCells);
-  }
-  }
-strokeWeight(5);
-}
+// function drawGrid(){
+//   numCells = 2;
+//   fillColor = 0;
+// strokeWeight(0);
+//   for (let i = 0; i <= width; i += width/numCells){
+//   for (let j = 0; j <= height; j += height/numCells){
+//     if(fillColor === 255){
+//       fillColor = 100;
+//     } else{
+//       fillColor = 255;
+//     }
+//     fill(fillColor);
+//     rect(i, j, width/numCells, height/numCells);
+//   }
+//   }
+// strokeWeight(5);
+// }
